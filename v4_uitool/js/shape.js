@@ -5,17 +5,11 @@ const maxPoints= 10000;
 
 
 function createBaseShape(s) {
-  console.log("createBaseShape");
+  // console.log("createBaseShape");
   // console.log(this.shapes["shapeArr_0"]);
   for (var i = 0; i < 4; i++) {
-    // if(this.totalPoints<this.maxPoints){
       s.subdivisions++;
-      // console.log(i,subdivisions, s.shapes);
       s.shapes["shapeArr_"+s.subdivisions] = s.subDivide(s.shapes["shapeArr_"+i], i);
-      // this.totalPoints+=shapes["shapeArr_"+this.subdivisions].length;
-    // }else{
-      // console.log(this.totalPoints,"hey we're jammed up w a ton of points so gonna chill rn");
-    // }
   }
   s.baseShape = s.shapes["shapeArr_"+s.subdivisions].slice();
   s.shapes = {};
@@ -46,7 +40,6 @@ class Shape {
   }
 
   subDivide(arr) {
-    // console.log("subdivide", arr);
     var tmparr=arr.slice();
     var newArr = [];
     for (var i = 0; i < tmparr.length; i++) {
@@ -68,7 +61,7 @@ class Shape {
     return newArr;
   }
   generateLayer(pos) {
-    console.log("generateLayer");
+    // console.log("generateLayer");
     var tmparr = this.baseShape.slice();
 
     for (var i = 0; i < 3; i++) {
@@ -79,10 +72,7 @@ class Shape {
   }
   drawShape(_arr) {
       this.app.ctx.fillStyle=this.color;
-      // this.app.ctx.fillStyle="rgba(155,10,10,0.013324)";
-
-      // this.app.ctx.fillStyle= "rgba(150,"+Math.round(Math.random()*255)+",255,0.025)";
-
+      // this.app.ctx.fillStyle="rgba(193,60,40,0.013324)";
       this.app.ctx.beginPath();
       this.app.ctx.moveTo(_arr[0].x, _arr[0].y);
       for (var i = 1; i < _arr.length; i++) {

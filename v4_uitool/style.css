@@ -1,17 +1,23 @@
 body{
 	margin:0;
-	background-color: hsl(40,0%,10%);
+	/* background-color: hsl(40,0%,100%); */
 	font-family: Titillium Web;
 }
 
 #c{
 
 }
+#topnav{
+	display: grid;
+}
+#logo{
+	padding: 40px 20px;;
+	width: 140px;
+	position: absolute;
 
-#btn{
-	/* background-color: green; */
-	border-radius: 10px;
-	/* height: 22px; */
+}
+.btn{
+
 
 }
 #nav{
