@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <title>Plaster UI Tool</title>
+    <meta charset="utf-8">
+
+  </head>
+  <body>
+    <div id="nav">
+      <div id="btn">
+        <button>generate new image</button>
+      </div>
+      <div id="colorpicker">
+        <input type="color" id="coloroverlay" name="overlay"
+               value="#bada55" />
+      </div>
+      <div id="blend">
+        <select id="blendmode">
+          <option value="none">none</option>
+          <option value="multiply">multiply</option>
+          <option value="overlay">overlay</option>
+          <option value="screen">screen</option>
+        </select>
+      </div>
+      <div id="dimensions">
+        <select id="dimension">
+          <option value="{w:300, h:250}">300x250</option>
+          <option value="{w:400, h:600}">400x600</option>
+          <option value="{w:600, h:200}">600x200</option>
+        </select>
+      </div>
+    </div>
+    <canvas id="c" width="800" height="500"></canvas>
+    <script src="js/bundle.js"></script>
+  </body>
+</html>
