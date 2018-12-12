@@ -1,5 +1,8 @@
 import utils from './utils';
 import Shape from './shape';
+// import Palette from './palette';
+import shapeConfig from './shapeConfig';
+//
 let _App = {
   seed: 244,
   init: function(){
@@ -10,7 +13,8 @@ let _App = {
 
     var dlbtn = document.getElementById('dl_btn');
     dlbtn.onclick=dlbtn.touchstart=function(){
-      _App.dlImage();
+      // _App.dlImage();
+        _App.randomize();
     };
 
     utils.initSeed(this.seed);
@@ -19,9 +23,10 @@ let _App = {
     this.canvas.setAttribute("width", window.innerWidth);
     this.canvas.setAttribute("height", window.innerHeight);
 
-    
+
     this.w = this.canvas.width;
     this.h = this.canvas.height;
+    console.log(this.w);
     this.centerw = this.w/2;
     this.centerh = this.h/2;
     this.ctx = _App.canvas.getContext("2d");
@@ -49,13 +54,21 @@ let _App = {
     // this.ctx.globalCompositeOperation = "lighter";
     // this.colorsArr =["rgba(220,220,220, 0.006)","rgba(110,111,0, 0.01)","rgba(199,43,10, 0.008)","rgba(0,111,211, 0.0059)"]
 
-    this.ctx.baseColor="rgb(245,148,218)";
-    this.ctx.globalCompositeOperation = "darken";
+    // this.ctx.baseColor="rgb(245,148,218)";
+    // this.ctx.globalCompositeOperation = "darken";
+    // this.colorsArr =["rgba(220,0,220, 0.026)","rgba(110,151,0, 0.01)","rgba(199,43,10, 0.008)","rgba(0,111,211, 0.0059)"]
+    //
+    this.ctx.baseColor="rgb(111,68,28)";
+    this.ctx.globalCompositeOperation = "lighter";
     this.colorsArr =["rgba(220,0,220, 0.026)","rgba(110,151,0, 0.01)","rgba(199,43,10, 0.008)","rgba(0,111,211, 0.0059)"]
 
-    // this.ctx.baseColor="rgb(111,68,28)";
-    // this.ctx.globalCompositeOperation = "lighter";
-    // this.colorsArr =["rgba(220,0,220, 0.026)","rgba(110,151,0, 0.01)","rgba(199,43,10, 0.008)","rgba(0,111,211, 0.0059)"]
+    this.ctx.baseColor="rgb(222,41,128)";
+    this.ctx.globalCompositeOperation = "difference";
+    this.colorsArr =["rgba(10,0,10, 0.016)","rgba(110,11,0, 0.01)","rgba(99,43,10, 0.008)","rgba(110,11,111, 0.0059)"]
+
+    let newShape = shapeConfig.list[4];
+    this.ctx.baseColor=newShape.bg;
+    this.ctx.globalCompositeOperation = newShape.blend;
 
 
     //begin by filling the background
@@ -83,6 +96,15 @@ let _App = {
         }
       }
     }
+  },
+  randomize:function(){
+    let p = shapeConfig.list;
+    let numA = Math.floor(Math.random()*p.length);
+    let numB = Math.floor(Math.random()*p.length);
+    //
+    this.ctx.baseColor=p[numA].bg;
+    this.ctx.globalCompositeOperation = p[numB].blend;
+    _App.regenerate();
   },
   regenerate: function(){
     // console.log("regenerate", this);

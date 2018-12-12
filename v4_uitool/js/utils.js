@@ -1,4 +1,5 @@
 let _seed = 0;
+let count = 0;
 let blendModeArr = ["source-over", "source-in", "source-out", "source-atop", "destination-over", "destination-in", "destination-out", "destination-atop", "lighter", "copy", "xor", "multiply", "screen", "overlay", "darken", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"];
 exports.createNewPoint = function(p1, p2, iter){
       // console.log(this);
@@ -6,7 +7,16 @@ exports.createNewPoint = function(p1, p2, iter){
       var xx =(p1.x+p2.x) / 2;
       var yy = (p1.y+p2.y) / 2;
       var rnd = ((this.getRandom()+this.getRandom()+this.getRandom()+this.getRandom()+this.getRandom()+this.getRandom())-3/3);
+      // console.log(rnd);
+
       rnd*=Math.min(Math.pow(rnd, rnd), rnd*3.5);
+      rnd*=2;
+      while (count<100) {
+        console.log(rnd);
+        count++
+
+
+      }
       // console.log(iter, rnd);
       var ang =rnd*(2*Math.PI);
 
