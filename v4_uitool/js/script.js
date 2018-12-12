@@ -34,42 +34,41 @@ let _App = {
     // this.ctx.beginPath();
     // this.ctx.imageSmoothingEnabled = true;
 
-    this.ctx.baseColor="rgb(86,42,54)";
-    this.ctx.globalCompositeOperation = "color-dodge";
-    this.colorsArr =["rgba(215,155,0, 0.01)","rgba(255,0,30, 0.01)","rgba(33,228,52, 0.008)","rgba(99,43,225, 0.006)","rgba(238,69,64, 0.006)"]
 
-    // this.ctx.baseColor="rgb(44,44,144)";
-    // this.ctx.globalCompositeOperation = "lighter";
+    // this.colorsArr =["rgba(215,155,0, 0.01)","rgba(255,0,30, 0.01)","rgba(33,228,52, 0.008)","rgba(99,43,225, 0.006)","rgba(238,69,64, 0.006)"]
+
+
     // this.colorsArr =["rgba(255,255,0, 0.01)","rgba(255,0,0, 0.01)"];
 
-    // this.ctx.baseColor="rgb(44,44,44)";
-    // this.ctx.globalCompositeOperation = "hard-light";
+
     // this.colorsArr =["rgba(0,255,0, 0.01)","rgba(0,0,230, 0.0123)","rgba(233,0,0, 0.010)"];
 
-    // this.ctx.baseColor="rgb(222,222,222)";
-    // this.ctx.globalCompositeOperation = "hard-light";
+
     // this.colorsArr =["rgba(0,155,122, 0.021)","rgba(113,111,130, 0.001)","rgba(99,43,210, 0.006),rgba(215,155,0, 0.01)"]
 
-    // this.ctx.baseColor="rgb(85,40,10)";
-    // this.ctx.globalCompositeOperation = "lighter";
+
     // this.colorsArr =["rgba(220,220,220, 0.006)","rgba(110,111,0, 0.01)","rgba(199,43,10, 0.008)","rgba(0,111,211, 0.0059)"]
 
-    // this.ctx.baseColor="rgb(245,148,218)";
-    // this.ctx.globalCompositeOperation = "darken";
+
+    // this.colorsArr =["rgba(251,0,220, 0.036)","rgba(110,251,0, 0.0059)","rgba(199,43,10, 0.008)","rgba(0,111,211, 0.0059)"]
+
+
     // this.colorsArr =["rgba(220,0,220, 0.026)","rgba(110,151,0, 0.01)","rgba(199,43,10, 0.008)","rgba(0,111,211, 0.0059)"]
-    //
-    this.ctx.baseColor="rgb(111,68,28)";
-    this.ctx.globalCompositeOperation = "lighter";
-    this.colorsArr =["rgba(220,0,220, 0.026)","rgba(110,151,0, 0.01)","rgba(199,43,10, 0.008)","rgba(0,111,211, 0.0059)"]
 
-    this.ctx.baseColor="rgb(222,41,128)";
-    this.ctx.globalCompositeOperation = "difference";
-    this.colorsArr =["rgba(10,0,10, 0.016)","rgba(110,11,0, 0.01)","rgba(99,43,10, 0.008)","rgba(110,11,111, 0.0059)"]
 
-    let newShape = shapeConfig.list[4];
-    this.ctx.baseColor=newShape.bg;
-    this.ctx.globalCompositeOperation = newShape.blend;
+    // this.colorsArr =["rgba(10,0,10, 0.016)","rgba(110,11,0, 0.01)","rgba(99,43,10, 0.008)","rgba(110,11,111, 0.0059)"]
+    let shapeObj = shapeConfig.list[0];
+    this.colorsArr=[];
+    for (var i = 0; i < shapeObj.shapes.length; i++) {
+      this.colorsArr.push(shapeObj.shapes[i].color);
+      console.log(shapeObj.shapes[i]);
+    }
 
+
+
+    this.ctx.baseColor=shapeObj.bg;
+    this.ctx.globalCompositeOperation = shapeObj.blend;
+    console.log(shapeObj);
 
     //begin by filling the background
     this.ctx.fillStyle = this.ctx.baseColor;
@@ -78,13 +77,16 @@ let _App = {
   },
   createShape:function(){
     // console.log("createShape");
+    // console.log(_App);
     for (var j = 0; j < this.colorsArr.length; j++) {
       //optionally clip it into a circle
+      // console.log("j", j);
       // if(j==0){
         // this.ctx.arc(this.centerw, this.centerh, 185, 0, Math.PI * 2, true);
         // this.ctx.clip();
       // }
       var nm = "n"+j;
+      // console.log(this.colorsArr[j]);
       const nm = new Shape(_App, this.colorsArr[j]);
       for (var k = 0; k < 20; k++) {
         for (var i = 0; i < 3; i++) {
